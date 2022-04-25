@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+
+	<insert id="join" parameterType="member">
+		INSERT INTO MEMBER VALUES(#{fId}, #{fPw}, #{fName}, #{fBirth}, #{fGender}, #{fPhone}, #{fAddr}, #{fEmail})
+	</insert>
+
+	<select id="list" resultType="member">
+		SELECT * FROM MEMBER
+	</select>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM MEMBER WHERE FID = #{fId}
+	</delete>
+	
+	<update id="modi" parameterType="member">
+		UPDATE MEMBER
+		SET FPW = #{fPw} , FNAME = #{fName}, FBIRTH = #{fBirth},
+		FGENDER = #{fGender} , FPHONE = #{fPhone} , FADDR = #{fAddr} , FEMAIL = #{fEmail} WHERE FID = #{fId}
+	</update>
+	
+	<select id="login" parameterType="member" resultType="String">
+		SELECT FID FROM MEMBER WHERE FID=#{fId} AND FPW=#{fPw} 
+	</select>
+	
+</mapper>
